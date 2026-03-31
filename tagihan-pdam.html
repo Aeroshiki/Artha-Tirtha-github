@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tagihan PDAM</title>
+  <link rel="stylesheet" href="assets/css/tagihan.css" />
+</head>
+<body>
+  <div class="tagihan-page">
+
+<header class="tagihan-header">
+  <div class="header-overlay"></div>
+  <button class="back-btn" onclick="goBack()">‹</button>
+  <h1>Bayar PDAM</h1>
+</header>
+
+    <main class="tagihan-content">
+      <div class="tab-wrapper">
+        <button class="tab active" onclick="switchTab('tagihan')" id="tab-tagihan">Tagihan</button>
+        <button class="tab" onclick="switchTab('riwayat')" id="tab-riwayat">Riwayat Tagihan</button>
+      </div>
+
+      <div class="input-group">
+        <label for="userId">No. Pelanggan</label>
+        <input type="text" id="userId" placeholder="Masukkan No. Pelanggan">
+      </div>
+
+      <button id="btn-tagihan" class="cek-btn" onclick="cariInvoice()">Cek Tagihan</button>
+      <button id="btn-riwayat" class="cek-btn" onclick="cariRiwayat()" style="display: none;">Lihat Riwayat</button>
+
+      <div id="invoiceResult" class="invoice-result"></div>
+    </main>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/tagihan-pdam.js"></script>
+</body>
+</html>

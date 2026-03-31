@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Tagihan Listrik</title>
+    <!-- Use the existing CSS for mobile layout similar to Pelanggan -->
+    <link rel="stylesheet" href="assets/css/pelanggan.css">
+</head>
+<body>
+    <div class="pelanggan-page">
+        <header class="pelanggan-header">
+            <div class="header-overlay"></div>
+            <!-- Simple back function (replace with specific route if needed) -->
+            <button class="back-btn" onclick="javascript:history.back()">‹</button>
+            <h1>Monitoring Tagihan Listrik</h1>
+        </header>
+
+        <main class="pelanggan-content">
+            <div class="menu-grid">
+                <button class="menu-btn active" onclick="switchTabListrik('daftar')" id="tab-daftar">Daftar</button>
+                <button class="menu-btn" onclick="switchTabListrik('tambah')" id="tab-tambah">Tambah</button>
+                <button class="menu-btn" onclick="switchTabListrik('edit')" id="tab-edit">Edit</button>
+                <button class="menu-btn" onclick="switchTabListrik('hapus')" id="tab-hapus">Hapus</button>
+            </div>
+
+            <!-- TAB 1: DAFTAR -->
+            <div id="section-daftar" class="section-content active">
+                <div class="input-group" style="display: flex; gap: 8px; margin-bottom: 16px;">
+                    <input type="text" id="cariDaftarListrik" placeholder="Cari Periode Bulan/Tahun atau ID..." onkeyup="loadDaftarListrik()" style="flex: 1; margin: 0;">
+                    <button class="action-btn" onclick="loadDaftarListrik()" style="margin: 0; width: auto; padding: 0 16px;">Refresh</button>
+                </div>
+                <div id="daftarResultListrik"></div>
+            </div>
+
+            <!-- TAB 2: TAMBAH -->
+            <div id="section-tambah" class="section-content">
+                <div class="input-group">
+                    <label>ID Tagihan</label>
+                    <input type="text" id="addId" placeholder="cth: LST-001 (Opsional/Bisa Kosong)">
+                </div>
+                <div class="input-group">
+                    <label>Periode Bulan</label>
+                    <select id="addBulan" style="width: 100%; border: 1px solid #dddddd; border-radius: 12px; padding: 12px 14px; font-size: 14px; outline: none; background: #fff; font-family: inherit;">
+                        <option value="Januari">Januari</option>
+                        <option value="Februari">Februari</option>
+                        <option value="Maret">Maret</option>
+                        <option value="April">April</option>
+                        <option value="Mei">Mei</option>
+                        <option value="Juni">Juni</option>
+                        <option value="Juli">Juli</option>
+                        <option value="Agustus">Agustus</option>
+                        <option value="September">September</option>
+                        <option value="Oktober">Oktober</option>
+                        <option value="November">November</option>
+                        <option value="Desember">Desember</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Periode Tahun</label>
+                    <input type="number" id="addTahun" placeholder="cth: 2026">
+                </div>
+                <div class="input-group">
+                    <label>Total Pemakaian (kWh)</label>
+                    <input type="number" id="addKwh" placeholder="Masukkan total kWh">
+                </div>
+                <div class="input-group">
+                    <label>Total Biaya (Rp)</label>
+                    <input type="text" id="addBiaya" placeholder="Masukkan total biaya (Rp)" onkeyup="formatRupiahInput(this)">
+                </div>
+                <button class="action-btn" onclick="tambahListrik()">Simpan Tagihan</button>
+            </div>
+
+            <!-- TAB 3: EDIT -->
+            <div id="section-edit" class="section-content">
+                <div class="input-group">
+                    <label>Cari ID, Bulan atau Tahun</label>
+                    <input type="text" id="editSearchId" placeholder="Masukkan pencarian (ID/Bulan/Tahun)">
+                </div>
+                <button class="action-btn" onclick="cariEditListrik()" style="margin-bottom: 16px;">Cari Data</button>
+
+                <div id="editForm" style="display: none;">
+                    <div class="input-group">
+                        <label>Periode Bulan</label>
+                        <input type="text" id="editBulan" readonly style="background-color: #f3f6fb;">
+                    </div>
+                    <div class="input-group">
+                        <label>Periode Tahun</label>
+                        <input type="number" id="editTahun" readonly style="background-color: #f3f6fb;">
+                    </div>
+                    <div class="input-group">
+                        <label>Total Pemakaian (kWh)</label>
+                        <input type="number" id="editKwh">
+                    </div>
+                    <div class="input-group">
+                        <label>Total Biaya (Rp)</label>
+                        <input type="text" id="editBiaya" onkeyup="formatRupiahInput(this)">
+                    </div>
+                    <button class="action-btn btn-warning" onclick="simpanEditListrik()">Update Data</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: HAPUS -->
+            <div id="section-hapus" class="section-content">
+                <div class="input-group">
+                    <label>Cari ID, Bulan atau Tahun</label>
+                    <input type="text" id="hapusSearchId" placeholder="Masukkan pencarian (ID/Bulan/Tahun)">
+                </div>
+                <button class="action-btn" onclick="cariHapusListrik()" style="margin-bottom: 16px;">Cari Data</button>
+
+                <div id="hapusDetail" style="display: none;">
+                    <div class="list-card">
+                        <h3 id="hapusPeriodeDisplay"></h3>
+                        <p>ID: <span id="hapusIdDisplay"></span></p>
+                        <p>Pemakaian: <span id="hapusKwhDisplay"></span> kWh</p>
+                        <p>Total Biaya: Rp <span id="hapusBiayaDisplay"></span></p>
+                    </div>
+                    <button class="action-btn btn-danger" onclick="hapusListrik()">Hapus Permanen</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script that initializes and runs the logic for Monitoring Listrik -->
+    <script src="assets/js/riwayat-tagihan.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelanggan</title>
+    <link rel="stylesheet" href="assets/css/pelanggan.css">
+</head>
+<body>
+    <div class="pelanggan-page">
+        <header class="pelanggan-header">
+            <div class="header-overlay"></div>
+            <button class="back-btn" onclick="goBack()">‹</button>
+            <h1>Pelanggan</h1>
+        </header>
+
+        <main class="pelanggan-content">
+            <div class="menu-grid">
+                <button class="menu-btn active" onclick="switchPelangganTab('daftar')" id="tab-daftar">Daftar</button>
+                <button class="menu-btn" onclick="switchPelangganTab('tambah')" id="tab-tambah">Tambah</button>
+                <button class="menu-btn" onclick="switchPelangganTab('edit')" id="tab-edit">Edit</button>
+                <button class="menu-btn" onclick="switchPelangganTab('hapus')" id="tab-hapus">Hapus</button>
+            </div>
+
+            <!-- TAB 1: DAFTAR PELANGGAN -->
+            <div id="section-daftar" class="section-content active">
+                <div class="input-group" style="display: flex; gap: 8px; margin-bottom: 16px;">
+                    <input type="text" id="cariDaftar" placeholder="Cari ID atau Nama..." onkeyup="loadDaftarPelanggan()" style="flex: 1; margin: 0;">
+                    <button class="action-btn" onclick="loadDaftarPelanggan()" style="margin: 0; width: auto; padding: 0 16px;">Refresh</button>
+                </div>
+                <div id="daftarResult"></div>
+            </div>
+
+            <!-- TAB 2: TAMBAH PELANGGAN -->
+            <div id="section-tambah" class="section-content">
+                <div class="input-group">
+                    <label>ID Pelanggan</label>
+                    <input type="text" id="addId" placeholder="Masukkan ID">
+                </div>
+                <div class="input-group">
+                    <label>Nama Pelanggan</label>
+                    <input type="text" id="addNama" placeholder="Masukkan Nama">
+                </div>
+                <div class="input-group">
+                    <label>Tanggal Pemasangan</label>
+                    <input type="date" id="addTanggal">
+                </div>
+                <div class="input-group">
+                    <label>Note (Lokasi Meteran Air)</label>
+                    <textarea id="addNote" rows="3" placeholder="Contoh: Meteran berada di samping garasi kiri"></textarea>
+                </div>
+                <button class="action-btn" onclick="tambahPelanggan()">Simpan Pelanggan</button>
+            </div>
+
+            <!-- TAB 3: EDIT PELANGGAN -->
+            <div id="section-edit" class="section-content">
+                <div class="input-group">
+                    <label>Cari ID atau Nama Pelanggan</label>
+                    <input type="text" id="editSearchId" placeholder="Masukkan ID atau Nama untuk diedit">
+                </div>
+                <button class="action-btn" onclick="cariEditPelanggan()" style="margin-bottom: 16px;">Cari Data</button>
+
+                <div id="editForm" style="display: none;">
+                    <div class="input-group">
+                        <label>Nama Pelanggan</label>
+                        <input type="text" id="editNama">
+                    </div>
+                    <div class="input-group">
+                        <label>Tanggal Pemasangan</label>
+                        <input type="date" id="editTanggal">
+                    </div>
+                    <div class="input-group">
+                        <label>Note (Lokasi Meteran Air)</label>
+                        <textarea id="editNote" rows="3"></textarea>
+                    </div>
+                    <button class="action-btn btn-warning" onclick="simpanEditPelanggan()">Update Data</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: HAPUS PELANGGAN -->
+            <div id="section-hapus" class="section-content">
+                <div class="input-group">
+                    <label>Cari ID atau Nama Pelanggan</label>
+                    <input type="text" id="hapusSearchId" placeholder="Masukkan ID atau Nama untuk dihapus">
+                </div>
+                <button class="action-btn" onclick="cariHapusPelanggan()" style="margin-bottom: 16px;">Cari Data</button>
+
+                <div id="hapusDetail" style="display: none;">
+                    <div class="list-card">
+                        <h3 id="hapusNamaDisplay"></h3>
+                        <p>ID: <span id="hapusIdDisplay"></span></p>
+                        <p>Tgl Pasang: <span id="hapusTanggalDisplay"></span></p>
+                    </div>
+                    <button class="action-btn btn-danger" onclick="hapusPelanggan()">Hapus Permanen</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/pelanggan.js"></script>
+</body>
+</html>

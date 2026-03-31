@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Tagihan</title>
+    <link rel="stylesheet" href="assets/css/pelanggan.css">
+    <style>
+      .tab-flex { display: flex; gap: 8px; margin-bottom: 24px; }
+      .tab-flex .menu-btn { flex: 1; padding: 12px 0; border-radius: 12px; font-size: 13px; text-align: center; }
+      .riwayat-item { background: #f8fbff; border: 1px solid #dce9f9; padding: 12px; border-radius: 12px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; }
+      .riwayat-item:hover { background: #eff6ff; border-color: rgb(191, 219, 254); }
+      .select-input { width: 100%; border: 1px solid #dddddd; border-radius: 12px; padding: 12px 14px; font-size: 14px; outline: none; background: #fff; }
+    </style>
+</head>
+<body>
+    <div class="pelanggan-page">
+        <header class="pelanggan-header">
+            <div class="header-overlay"></div>
+            <button class="back-btn" onclick="goBack()">‹</button>
+            <h1>Input Tagihan</h1>
+        </header>
+
+        <main class="pelanggan-content">
+            <div class="tab-flex">
+                <button class="menu-btn active" onclick="switchInputTagihanTab('input')" id="tab-input">Input</button>
+                <button class="menu-btn" onclick="switchInputTagihanTab('edit')" id="tab-edit">Edit</button>
+                <button class="menu-btn" onclick="switchInputTagihanTab('hapus')" id="tab-hapus">Hapus</button>
+            </div>
+
+            <!-- TAB 1: INPUT TAGIHAN -->
+            <div id="section-input" class="section-content active">
+                <div class="input-group">
+                    <label>Cari ID / Nama Pelanggan</label>
+                    <input type="text" id="inputSearchQuery" placeholder="Masukkan ID atau Nama">
+                </div>
+                <button class="action-btn" onclick="cariUntukInput()" style="margin-bottom: 16px;">Cari Pelanggan</button>
+
+                <!-- Initial hidden form -->
+                <div id="inputFormArea" style="display: none; border-top: 1px dashed #ccc; padding-top: 16px;">
+                    <h3 style="margin-bottom: 12px; font-size: 16px; color:#111827;" id="inputNamaDisplay">Nama</h3>
+                    <div class="input-group">
+                        <label>Meteran Lama</label>
+                        <div id="inputMeterLamaLbl" style="background:#eef2f6; padding: 12px; border-radius: 12px; font-weight: bold; font-family: monospace; color:#374151;"></div>
+                    </div>
+                    <div class="input-group">
+                        <label>Meteran Baru</label>
+                        <input type="number" id="inputMeterBaru" placeholder="Masukkan angka meteran baru">
+                    </div>
+                    <div class="input-group" style="display: flex; gap: 10px;">
+                        <div style="flex: 1;">
+                            <label>Bulan</label>
+                            <select id="inputBulan" class="select-input">
+                                <option>Januari</option><option>Februari</option><option>Maret</option>
+                                <option>April</option><option>Mei</option><option>Juni</option>
+                                <option>Juli</option><option>Agustus</option><option>September</option>
+                                <option>Oktober</option><option>November</option><option>Desember</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label>Tahun</label>
+                            <input type="number" id="inputTahun" value="2026">
+                        </div>
+                    </div>
+                    <button class="action-btn" onclick="simpanInputTagihan()">Simpan Tagihan</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: EDIT TAGIHAN -->
+            <div id="section-edit" class="section-content">
+                <div class="input-group">
+                    <label>Cari ID / Nama Pelanggan</label>
+                    <input type="text" id="editSearchQuery" placeholder="Masukkan ID atau Nama">
+                </div>
+                <button class="action-btn" onclick="cariUntukEdit()" style="margin-bottom: 16px;">Cari Pelanggan</button>
+
+                <!-- List Riwayat utk dipilih -->
+                <div id="editListArea" style="display: none;">
+                    <h3 style="font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 6px;">Pilih Tagihan (Terbaru di atas)</h3>
+                    <div id="editRiwayatList"></div>
+                </div>
+
+                <!-- Form Edit -->
+                <div id="editFormArea" style="display: none; border-top: 1px dashed #ccc; padding-top: 16px; margin-top: 16px;">
+                    <h3 style="margin-bottom: 12px; font-size: 15px; color:#d97706;">Edit Detail Tagihan</h3>
+                    <div class="input-group">
+                        <label>Meteran Lama</label>
+                        <input type="number" id="editMeterLama">
+                    </div>
+                    <div class="input-group">
+                        <label>Meteran Baru</label>
+                        <input type="number" id="editMeterBaru">
+                    </div>
+                    <div class="input-group">
+                        <label>Total Tagihan (Rp)</label>
+                        <input type="number" id="editTotalTagihan">
+                    </div>
+                    <button class="action-btn btn-warning" onclick="tanyaSimpanEdit()">Simpan Data</button>
+                </div>
+            </div>
+
+            <!-- TAB 3: HAPUS TAGIHAN -->
+            <div id="section-hapus" class="section-content">
+                <div class="input-group">
+                    <label>Cari ID / Nama Pelanggan</label>
+                    <input type="text" id="hapusSearchQuery" placeholder="Masukkan ID atau Nama">
+                </div>
+                <button class="action-btn" onclick="cariUntukHapus()" style="margin-bottom: 16px;">Cari Pelanggan</button>
+
+                <!-- List Riwayat utk dipilih -->
+                <div id="hapusListArea" style="display: none;">
+                    <h3 style="font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 6px;">Pilih Tagihan yg akan Dihapus</h3>
+                    <div id="hapusRiwayatList"></div>
+                </div>
+
+                <div id="hapusDetailArea" style="display: none; margin-top: 16px; padding: 14px; background:#fff5f5; border:1px solid #ffc9c9; border-radius:12px;">
+                    <h3 style="color:#e03131; margin-bottom:8px; font-size:15px;">Data Terpilih:</h3>
+                    <p id="hapusPilihanDisplay" style="font-size:13px; color:#495057; margin-bottom:12px;"></p>
+                    <button class="action-btn btn-danger" onclick="tanyaHapus()">Hapus Permanen Data</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/input-tagihan.js"></script>
+</body>
+</html>

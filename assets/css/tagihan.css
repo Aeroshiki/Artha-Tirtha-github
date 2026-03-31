@@ -1,0 +1,360 @@
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  background: #f3f6fb;
+  overflow-x: hidden;
+}
+
+/* =========================
+   PAGE WRAPPER
+========================= */
+.tagihan-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f3f6fb;
+}
+
+/* =========================
+   HEADER
+========================= */
+.tagihan-header {
+  width: 100%;
+  height: 155px;
+  background: url('../img/banner-pdam.jpg') center center / cover no-repeat;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 24px;
+  overflow: hidden;
+}
+
+/* Overlay biru transparan di atas banner */
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(22, 144, 255, 0.82),
+    rgba(0, 114, 236, 0.78)
+  );
+  backdrop-filter: blur(1px);
+  z-index: 1;
+}
+
+/* Judul harus di atas overlay */
+.tagihan-header h1 {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+.back-btn {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: #222;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  z-index: 2;
+}
+
+/* =========================
+   CONTENT CARD
+========================= */
+.tagihan-content {
+  width: calc(100% - 24px);
+  max-width: 420px;
+  margin: 14px auto 0 auto;
+  background: white;
+  border-radius: 24px;
+  padding: 20px 16px 30px;
+  min-height: 500px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   TABS
+========================= */
+.tab-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.tab {
+  flex: 1;
+  border: none;
+  background: #4da8ff;
+  color: white;
+  padding: 12px 10px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.tab:hover {
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  background: #2d8cf0;
+}
+
+/* =========================
+   INPUT
+========================= */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.input-group input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #dddddd;
+  border-radius: 14px;
+  padding: 0 14px;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+}
+
+.input-group input:focus {
+  border-color: #2d8cf0;
+  box-shadow: 0 0 0 3px rgba(45, 140, 240, 0.12);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.cek-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 16px;
+  background: #2d8cf0;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 8px 18px rgba(45, 140, 240, 0.22);
+  transition: 0.2s ease;
+}
+
+.cek-btn:hover {
+  transform: translateY(-1px);
+}
+
+.cek-btn:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   RESULT
+========================= */
+.invoice-result {
+  margin-top: 24px;
+}
+
+.invoice-card {
+  background: #f8fbff;
+  border: 1px solid #dce9f9;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.invoice-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.invoice-card p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #374151;
+}
+
+/* =========================
+   RIWAYAT
+========================= */
+.riwayat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.riwayat-card {
+  background: white;
+  border: 1px solid #dce9f9;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.riwayat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #eee;
+}
+
+.riwayat-bulan {
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.riwayat-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.status-lunas {
+  background: #e6fcf5;
+  color: #0ca678;
+}
+
+.status-belum {
+  background: #fff5f5;
+  color: #e03131;
+}
+
+.riwayat-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.riwayat-body p {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.riwayat-total {
+  font-weight: 700;
+  color: #2d8cf0 !important;
+  font-size: 15px !important;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 480px) {
+  .tagihan-header {
+    height: 145px;
+    padding-top: 20px;
+  }
+
+  .tagihan-header h1 {
+    font-size: 18px;
+  }
+
+  .tagihan-content {
+    width: calc(100% - 14px);
+    margin-top: 12px;
+    padding: 18px 14px 28px;
+  }
+
+  .tab {
+    font-size: 13px;
+    padding: 11px 8px;
+  }
+}
+
+/* =========================
+   PRINT STYLES (58mm Thermal)
+========================= */
+@media print {
+  @page {
+    size: 58mm auto;
+    margin: 0;
+  }
+  
+  body * {
+    visibility: hidden;
+  }
+  
+  #printArea, #printArea * {
+    visibility: visible;
+  }
+  
+  #printArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 58mm;
+    padding: 2mm;
+    background: white;
+    box-shadow: none;
+    border: none;
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #000;
+  }
+
+  /* Specific overrides */
+  #printArea h3 {
+    font-size: 14px;
+    color: #000;
+  }
+  
+  #printArea p, #printArea span, #printArea strong {
+    color: #000;
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  .print-header p {
+    border-bottom: 1px dashed #000 !important;
+  }
+
+  #printArea hr {
+    border-top: 1px dashed #000 !important;
+  }
+
+  .print-blue {
+    color: #000 !important;
+  }
+}
